@@ -1,6 +1,7 @@
 package by.onyx.common.config;
 
 import by.onyx.common.dataSource.DataSourceInterface;
+import lombok.AllArgsConstructor;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +18,7 @@ import javax.annotation.Resource;
 import java.util.Properties;
 
 @Configuration
-@EnableTransactionManagement (proxyTargetClass = true)
+@EnableTransactionManagement(proxyTargetClass = true)
 @PropertySource("classpath:app.properties")
 @ComponentScan("by.onyx.common")
 @EnableJpaRepositories("by.onyx.common.repositories")
@@ -29,7 +30,6 @@ public class CommonConfig {
 
     @Resource
     private Environment env;
-
     @Autowired
     private DataSourceInterface dataSource;
 

@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
     $("button.delete").click(function () {
         id = $(this).attr("attr");
-       deleteUser(id);
+        deleteUser(id);
     });
 });
 
@@ -17,13 +17,14 @@ function editUser(id) {
         saveNewUserProfile(id);
     })
 }
+
 function fillFormEditUser(id) {
-    if(id != 0){
-        $.ajax("/admin/rest/profile/get-user-by-id",{
+    if (id != 0) {
+        $.ajax("/admin/rest/profile/get-user-by-id", {
             contentType: "application/json",
             data: id,
             type: "post",
-            success: function(data){
+            success: function (data) {
                 $("#userName").html(data.firstName);
                 $("#firstName").val(data.firstName);
                 $("#lastName").val(data.lastName);
@@ -31,7 +32,7 @@ function fillFormEditUser(id) {
                 $("#cabinetNumber").val(data.cabinetNumber);
                 $("#phoneNumber").val(data.phoneNumber);
             },
-            error: function(data){
+            error: function (data) {
                 alert("don't get user by id " + id);
                 console.log(data);
             }
@@ -39,6 +40,7 @@ function fillFormEditUser(id) {
     }
 
 }
+
 function saveNewUserProfile(id) {
     var json = {
         "id": id,
@@ -48,17 +50,17 @@ function saveNewUserProfile(id) {
         "cabinetNumber": $("#cabinetNumber").val(),
         "phoneNumber": $("#phoneNumber").val()
     };
-    if(json != null){
-        $.ajax("/admin/rest/profile/save-user-data",{
+    if (json != null) {
+        $.ajax("/admin/rest/profile/save-user-data", {
             contentType: "application/json",
             data: JSON.stringify(json),
             type: "post",
-            success: function(data){
-                if(data == true) {
+            success: function (data) {
+                if (data == true) {
                     window.location.reload();
                 }
             },
-            error: function(data){
+            error: function (data) {
                 alert("don't save user data");
                 console.log(data);
             }
@@ -66,6 +68,7 @@ function saveNewUserProfile(id) {
     }
     event.preventDefault();
 }
+
 function deleteUser(id) {
 
 }

@@ -14,6 +14,7 @@ function showBlockOrder() {
     $("#orderView").css("display", "block");
     $("#historyOrderView").css("display", "none");
 }
+
 function showBlockHistoryOrder() {
     $("#orderView").css("display", "none");
     $("#historyOrderView").css("display", "block");

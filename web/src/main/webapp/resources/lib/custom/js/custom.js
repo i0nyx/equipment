@@ -17,7 +17,7 @@ var restUrlAdminShippingMethods = restUrlAdmin + "/shipping-methods/rest/";
 var restUrlAdminPaymentTypes = restUrlAdmin + "/payment-types/rest/";
 var restUrlAdminOrders = restUrlAdmin + "/orders/rest/";
 
-var restUrlAdminCountries=restUrlAdmin + "/countries/rest/";
+var restUrlAdminCountries = restUrlAdmin + "/countries/rest/";
 
 var restUrlAdminEmailTemplates = restUrlAdmin + "/messages/email-templates/rest/";
 
@@ -25,8 +25,8 @@ var ROLES = ["SUPER_ADMIN", "ADMIN", "MANAGER", "USER"];
 
 
 function validateSeoUrl(value) {
-    if(stringIsEmpty(value) || stringHasWhiteSpace(value)
-        || !stringStartsWithSlash(value) || stringEndsWithSlash(value)){
+    if (stringIsEmpty(value) || stringHasWhiteSpace(value)
+        || !stringStartsWithSlash(value) || stringEndsWithSlash(value)) {
         return false;
     }
     return true;
@@ -37,33 +37,33 @@ function stringIsEmpty(s) {
 }
 
 function stringStartsWithSlash(s) {
-    if(!stringIsEmpty(s)){
+    if (!stringIsEmpty(s)) {
         return s.charAt(0) == '/';
-    }else {
+    } else {
         return false;
     }
 }
 
 function stringEndsWithSlash(s) {
-    if(!stringIsEmpty(s)){
-        return s.charAt(s.length-1) == '/';
-    }else {
+    if (!stringIsEmpty(s)) {
+        return s.charAt(s.length - 1) == '/';
+    } else {
         return false;
     }
 }
 
 function stringHasWhiteSpace(s) {
-    if(!stringIsEmpty(s)){
+    if (!stringIsEmpty(s)) {
         return /\s/g.test(s);
-    }else {
+    } else {
         return false;
     }
 }
 
 function normalizePhoneNumber(s) {
     var result = '';
-    if(!stringIsEmpty(s)){
-        result =  s.replace(/[^0-9]/g, '');
+    if (!stringIsEmpty(s)) {
+        result = s.replace(/[^0-9]/g, '');
     }
     return result;
 }

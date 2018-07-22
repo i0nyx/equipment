@@ -5,11 +5,13 @@
 body {
     background: #ced5ca;
 }
-#menu{
+
+#menu {
     font-family: 'Open Sans', sans-serif;
     color: white;
     text-align: center;
 }
+
 #main {
     position: relative;
     list-style: none;
@@ -21,6 +23,7 @@ body {
     padding: 0;
     margin: 20px auto;
 }
+
 #main li {
     font-size: 0.5rem;
     display: inline-block;
@@ -44,6 +47,7 @@ li {
     left: 0;
     top: 48px;
 }
+
 .drop div {
     -webkit-transform: translate(0, -100%);
     -moz-transform: translate(0, -100%);
@@ -55,6 +59,7 @@ li {
     transition: all 0.5s 0.1s;
     position: relative;
 }
+
 .drop li {
     display: block;
     padding: 0;
@@ -81,6 +86,7 @@ li {
     -ms-transform: translate(0, 0);
     transform: translate(0, 0);
 }
+
 #main li:nth-child(1):hover ~ #marker {
     -webkit-transform: translate(0px, 0);
     -moz-transform: translate(0px, 0);
@@ -94,6 +100,7 @@ li {
     -ms-transform: translate(0, 0);
     transform: translate(0, 0);
 }
+
 #main li:nth-child(2):hover ~ #marker {
     -webkit-transform: translate(120px, 0);
     -moz-transform: translate(120px, 0);
@@ -107,6 +114,7 @@ li {
     -ms-transform: translate(0, 0);
     transform: translate(0, 0);
 }
+
 #main li:nth-child(3):hover ~ #marker {
     -webkit-transform: translate(240px, 0);
     -moz-transform: translate(240px, 0);
@@ -120,6 +128,7 @@ li {
     -ms-transform: translate(0, 0);
     transform: translate(0, 0);
 }
+
 #main li:nth-child(4):hover ~ #marker {
     -webkit-transform: translate(360px, 0);
     -moz-transform: translate(360px, 0);
@@ -133,12 +142,14 @@ li {
     -ms-transform: translate(0, 0);
     transform: translate(0, 0);
 }
+
 #main li:nth-child(5):hover ~ #marker {
     -webkit-transform: translate(480px, 0);
     -moz-transform: translate(480px, 0);
     -ms-transform: translate(480px, 0);
     transform: translate(480px, 0);
 }
+
 a {
     text-decoration: none; /* Отменяем подчеркивание у ссылки */
 }

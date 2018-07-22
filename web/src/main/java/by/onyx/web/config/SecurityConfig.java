@@ -2,6 +2,7 @@ package by.onyx.web.config;
 
 import by.onyx.common.pojo.profile.Role;
 import by.onyx.common.service.CustomUserDetailsService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
-
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("admin").password("1986").roles("SUPER_ADMIN");
+        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("SUPER_ADMIN");
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
@@ -86,14 +86,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder;
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
     public CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler() {
-        CustomAuthenticationSuccessHandler handler = new CustomAuthenticationSuccessHandler();
-        return handler;
+        return new CustomAuthenticationSuccessHandler();
     }
 
     @Bean

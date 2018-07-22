@@ -11,11 +11,11 @@ public class ExportToExcelService {
 
     private EquipmentData equipmentData;
 
-    public ExportToExcelService(EquipmentData equipmentData){
+    public ExportToExcelService(EquipmentData equipmentData) {
         this.equipmentData = equipmentData;
     }
 
-    public void processEquipmentSheer(XSSFWorkbook workbook){
+    public void processEquipmentSheer(XSSFWorkbook workbook) {
         XSSFSheet sheet = workbook.createSheet(SHEET_EQUIPMENT_NAME);
         ExportEquipmentToExcelTool exportEquipmentToExcelTool = new ExportEquipmentToExcelTool(equipmentData);
         exportEquipmentToExcelTool.fillEquipmentSheet(workbook, sheet);

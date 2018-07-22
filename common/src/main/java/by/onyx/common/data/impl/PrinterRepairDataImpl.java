@@ -3,35 +3,34 @@ package by.onyx.common.data.impl;
 import by.onyx.common.data.PrinterRepairData;
 import by.onyx.common.pojo.PrinterRepair;
 import by.onyx.common.repositories.PrinterRepairRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Slf4j
+@AllArgsConstructor
+@Transactional
 public class PrinterRepairDataImpl implements PrinterRepairData {
 
-    private static final Logger log = LoggerFactory.getLogger(PrinterRepairData.class);
-
-    @Autowired
     private PrinterRepairRepository printerRepairRepository;
 
-    @Transactional(readOnly = true)
+    @Override
     public List<PrinterRepair> getAll() {
         return printerRepairRepository.findAll();
     }
 
-    @Transactional
+    @Override
     public PrinterRepair save(PrinterRepair data) {
         PrinterRepair result = null;
-        if(data != null){
-            try{
+        if (data != null) {
+            try {
                 result = printerRepairRepository.saveAndFlush(data);
                 log.info("save printerRepair object");
-            }catch (Exception e){
+            } catch (Exception e) {
                 log.error("can't save printerRepair object " + e);
             }
         }

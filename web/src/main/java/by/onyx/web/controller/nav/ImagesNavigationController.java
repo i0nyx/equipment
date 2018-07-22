@@ -2,9 +2,8 @@ package by.onyx.web.controller.nav;
 
 import by.onyx.common.service.file.FileService;
 import by.onyx.common.util.StringUtilExt;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,17 +22,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import static by.onyx.web.constants.Constant.MEDIA_URL;
+
 @Controller
 @RequestMapping(value = "/")
+@Slf4j
+@AllArgsConstructor
 public class ImagesNavigationController {
 
-    private static final Logger log = LoggerFactory.getLogger(ImagesNavigationController.class);
-
-    static final String MEDIA_URL = "control/";
-
-    @Autowired
     private FileService fileService;
-
 
     @RequestMapping(value = MEDIA_URL + "**")
     public ResponseEntity<byte[]> handleImageUrl(HttpServletRequest request) throws IOException {
@@ -44,7 +41,7 @@ public class ImagesNavigationController {
         StringBuilder fsPath = new StringBuilder();
         fsPath.append(fileService.getBaseFolderPath());
 
-        ArrayList<String> urlParts = new ArrayList<String>(Arrays.asList(urlPartsArray));
+        ArrayList<String> urlParts = new ArrayList<>(Arrays.asList(urlPartsArray));
         Iterator<String> iterator = urlParts.iterator();
 
         while (iterator.hasNext()) {
@@ -65,13 +62,11 @@ public class ImagesNavigationController {
         try {
             Path path = Paths.get(fsPath.toString());
             byte[] imageBytes = Files.readAllBytes(path);
-            if (imageBytes != null) {
-                responseEntity = new ResponseEntity<byte[]>(imageBytes, headers, HttpStatus.CREATED);
-                return responseEntity;
-            }
-        }catch (NoSuchFileException noSuchFileException){
+            responseEntity = new ResponseEntity<>(imageBytes, headers, HttpStatus.CREATED);
+            return responseEntity;
+        } catch (NoSuchFileException noSuchFileException) {
             log.error(noSuchFileException.getMessage());
-        }catch (Exception e) {
+        } catch (Exception e) {
             log.error("ImagesNavigationController handleImageUrl()", e);
             return null;
         }

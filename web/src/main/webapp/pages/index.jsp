@@ -8,7 +8,7 @@
         <section>
             <div class="tn-box tn-box-color">
                 <p>Здравствуйте ${user.firstName} ${user.lastName}.</p>
-                <p>Ваш логин: <sec:authentication property="principal.username" /></p>
+                <p>Ваш логин: <sec:authentication property="principal.username"/></p>
                 <a href="/logout">Выйти</a>
             </div>
         </section>
@@ -47,9 +47,9 @@
                 </div>
             </div>
             <div class="rotater">
-                <%--<div class="btn btn-icon">
-                    <a href="/order"><i class="fa fa-gears"></i></a>
-                </div>--%>
+                    <%--<div class="btn btn-icon">
+                        <a href="/order"><i class="fa fa-gears"></i></a>
+                    </div>--%>
             </div>
             <div class="rotater">
                 <div class="btn btn-icon ">

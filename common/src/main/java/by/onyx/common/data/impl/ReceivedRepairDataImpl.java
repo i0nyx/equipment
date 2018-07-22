@@ -1,12 +1,11 @@
 package by.onyx.common.data.impl;
 
-import by.onyx.common.pojo.Equipment;
+import by.onyx.common.data.ReceivedRepairData;
+import by.onyx.common.pojo.EquipmentType;
 import by.onyx.common.pojo.ReceivedRepair;
 import by.onyx.common.repositories.ReceivedRepairRepository;
-import by.onyx.common.data.ReceivedRepairData;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,63 +14,63 @@ import java.util.List;
 
 
 @Service
+@Slf4j
+@AllArgsConstructor
+@Transactional
 public class ReceivedRepairDataImpl implements ReceivedRepairData {
 
-    private static final Logger log = LoggerFactory.getLogger(ReceivedRepairData.class);
-
-    @Autowired
     private ReceivedRepairRepository receivedRepairRepository;
 
-    @Transactional(readOnly = true)
+    @Override
     public List<ReceivedRepair> getAll() {
-        List<ReceivedRepair> result = receivedRepairRepository.findAll();
-        return result;
+        return receivedRepairRepository.findAll();
     }
 
-    @Transactional(readOnly = true)
+    @Override
     public ReceivedRepair getById(int id) {
         ReceivedRepair result = null;
-        try{
+        try {
             result = receivedRepairRepository.findOne(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("not found by id " + e);
         }
         return result;
     }
 
-    @Transactional
-    public List<ReceivedRepair> getByEquipmentTypeAndState(Equipment.EquipmentType type, boolean state) {
-        List<ReceivedRepair> result = new ArrayList<ReceivedRepair>();
+    @Override
+    public List<ReceivedRepair> getByEquipmentTypeAndState(EquipmentType type, boolean state) {
+        List<ReceivedRepair> result = new ArrayList<>();
         List<ReceivedRepair> all = receivedRepairRepository.findAll();
-        if(all != null){
+        if (all != null) {
             for (ReceivedRepair rr : all) {
-                if(rr.getEquipment().getType().equals(type) && rr.isState() == state){
+                if (rr.getEquipment().getType().equals(type) && rr.isState() == state) {
                     result.add(rr);
                 }
             }
         }
         return result;
     }
-    @Transactional
+
+    @Override
     public List<ReceivedRepair> getByState(boolean status) {
-        List<ReceivedRepair> result = receivedRepairRepository.findByState(status);
-        return result;
+        return receivedRepairRepository.findByState(status);
     }
 
-    @Transactional
+    @Override
     public ReceivedRepair save(ReceivedRepair receivedRepair) {
         ReceivedRepair received = null;
-        if(receivedRepair != null){
-            try{
+        if (receivedRepair != null) {
+            try {
                 received = receivedRepairRepository.saveAndFlush(receivedRepair);
                 log.debug("Received Repair saved " + receivedRepair);
-            }catch (Exception e){
+            } catch (Exception e) {
                 log.error("Received Repair can't save " + e);
             }
         }
         return received;
     }
 
+    @Override
     public void deleteByNumber(String number) {
 
     }

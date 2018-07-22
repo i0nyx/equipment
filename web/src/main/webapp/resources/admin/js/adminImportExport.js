@@ -15,18 +15,18 @@ $(document).ready(function () {
 function importEquipment() {
     var form = document.forms[0];
     var formData = new FormData(form);
-    $.ajax( "/admin/loader/import-equipment", {
+    $.ajax("/admin/loader/import-equipment", {
         data: formData,
         type: "post",
-        cache : false,
+        cache: false,
         processData: false,
         contentType: false,
         success: function (data) {
-            if(data.msg == "true"){
+            if (data.msg == "true") {
                 $("#importEquipment").css("display", "none");
                 $("#msgSuccess").text(data.msgSuccess);
                 $("#msgSuccess").css("display", "block");
-            }else{
+            } else {
                 alert(data.msgError);
             }
         },

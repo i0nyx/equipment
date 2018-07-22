@@ -25,45 +25,49 @@ function showBlockSupport() {
     $("#notebook").css("display", "none");
     $("#other").css("display", "none");
 }
+
 function showBlockComputer() {
     $("#support").css("display", "none");
     $("#computer").css("display", "block");
     $("#notebook").css("display", "none");
     $("#other").css("display", "none");
 }
+
 function showBlockNotebook() {
     $("#support").css("display", "none");
     $("#computer").css("display", "none");
     $("#notebook").css("display", "block");
     $("#other").css("display", "none");
 }
+
 function showBlockOther() {
     $("#support").css("display", "none");
     $("#computer").css("display", "none");
     $("#notebook").css("display", "none");
     $("#other").css("display", "block");
 }
+
 function sendSupportForm() {
     var json = {
-        "lastName" : $("#lastName").val(),
-        "cabinet" : $("#cabinet").val(),
-        "comment" : $("#comment").val(),
-        "urgently" : $("#urgently").prop('checked'),
-        "supportType" : $("#type").val(),
-        "user" : $("#user").val()
+        "lastName": $("#lastName").val(),
+        "cabinet": $("#cabinet").val(),
+        "comment": $("#comment").val(),
+        "urgently": $("#urgently").prop('checked'),
+        "supportType": $("#type").val(),
+        "user": $("#user").val()
     };
 
-    $.ajax(restUrl + "send",{
+    $.ajax(restUrl + "send", {
         contentType: "application/json",
         data: JSON.stringify(json),
         type: "post",
-        success: function(data){
-            if(data == true) {
+        success: function (data) {
+            if (data == true) {
                 alert("Ваша заявка отправлена. Ожидайте.");
                 window.location.reload();
             }
         },
-        error: function(data){
+        error: function (data) {
             alert("Ошибка! Попробуйте снова или обратитесь к программисту.");
             console.log("Can't send " + data);
         }

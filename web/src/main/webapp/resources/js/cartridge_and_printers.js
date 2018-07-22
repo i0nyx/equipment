@@ -15,41 +15,44 @@ $(document).ready(function () {
 
 });
 
-function showBlockPrinter(){
+function showBlockPrinter() {
     $("#support").css("display", "none");
     $("#cartridge").css("display", "none");
     $("#printer").css("display", "block");
 }
+
 function showBlockCartridge() {
     $("#support").css("display", "none");
     $("#printer").css("display", "none");
     $("#cartridge").css("display", "block");
 }
+
 function showBlockSupport() {
     $("#printer").css("display", "none");
     $("#cartridge").css("display", "none");
     $("#support").css("display", "block");
 }
+
 function sendSupportForm() {
     var json = {
-        "lastName" : $("#lastName").val(),
-        "cabinet" : $("#cabinet").val(),
-        "comment" : $("#comment").val(),
-        "urgently" : $("#urgently").prop('checked'),
-        "supportType" : $("#type").val(),
-         "user" :  $("#user").val()
+        "lastName": $("#lastName").val(),
+        "cabinet": $("#cabinet").val(),
+        "comment": $("#comment").val(),
+        "urgently": $("#urgently").prop('checked'),
+        "supportType": $("#type").val(),
+        "user": $("#user").val()
     };
-    $.ajax(restUrl + "send",{
+    $.ajax(restUrl + "send", {
         contentType: "application/json",
         data: JSON.stringify(json),
         type: "post",
-        success: function(data){
-            if(data == true) {
+        success: function (data) {
+            if (data == true) {
                 alert("Ваша заявка отправлена. Ожидайте.");
                 window.location.reload();
             }
         },
-        error: function(data){
+        error: function (data) {
             alert("Ошибка! Попробуйте снова или обратитесь к программисту.");
             console.log("Can't send " + data);
         }

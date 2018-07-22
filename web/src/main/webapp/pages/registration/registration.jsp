@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" media="screen" href="/resources/css/registration.css">
@@ -31,4 +31,4 @@
     </div>
 
 </t:loginContainer>
-<script src="/resources/js/register.js" ></script>
+<script src="/resources/js/register.js"></script>

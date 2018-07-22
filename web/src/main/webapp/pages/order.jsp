@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:pagesConteiner>
@@ -33,9 +33,9 @@
                         <c:forEach var="order" items="${orders}">
                             <tr>
                                 <th scope="row">${order.id}</th>
-                                <td ><fmt:formatDate value="${order.startDate}" pattern="dd-MM-yy HH:mm" /></td>
-                                <td >${order.whom}</td>
-                                <td >${order.description}</td>
+                                <td><fmt:formatDate value="${order.startDate}" pattern="dd-MM-yy HH:mm"/></td>
+                                <td>${order.whom}</td>
+                                <td>${order.description}</td>
                                 <td>
                                     <c:choose>
                                         <c:when test="${order.state == false}">
@@ -65,11 +65,11 @@
                         <c:forEach var="allOrder" items="${allOrders}">
                             <tr>
                                 <td>${allOrder.id}</td>
-                                <td ><fmt:formatDate value="${allOrder.startDate}" pattern="dd-MM-yy HH:mm" /></td>
-                                <td ><fmt:formatDate value="${allOrder.endDate}" pattern="dd-MM-yy HH:mm" /></td>
-                                <td >${allOrder.whom}</td>
-                                <td >${allOrder.description}</td>
-                                <td ><c:choose>
+                                <td><fmt:formatDate value="${allOrder.startDate}" pattern="dd-MM-yy HH:mm"/></td>
+                                <td><fmt:formatDate value="${allOrder.endDate}" pattern="dd-MM-yy HH:mm"/></td>
+                                <td>${allOrder.whom}</td>
+                                <td>${allOrder.description}</td>
+                                <td><c:choose>
                                     <c:when test="${allOrder.state == false}">
                                         <span style="color:red">не выполнен</span>
                                     </c:when>
@@ -87,4 +87,4 @@
         </div>
     </div>
 </t:pagesConteiner>
-<script src="/resources/js/order.js" ></script>
+<script src="/resources/js/order.js"></script>

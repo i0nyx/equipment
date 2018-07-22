@@ -5,7 +5,7 @@ var restUrlOrder = "/rest/order/";
 
 $(document).ready(function () {
 
-    $( ".contact-form" ).submit(function( event ) {
+    $(".contact-form").submit(function (event) {
         submitContactForm(this);
         event.preventDefault();
     });

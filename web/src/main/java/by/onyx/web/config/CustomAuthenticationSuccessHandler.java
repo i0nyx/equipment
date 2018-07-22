@@ -22,7 +22,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
-        if (roles.contains("ROLE_" + Role.SUPER_ADMIN.name())){
+        if (roles.contains("ROLE_" + Role.SUPER_ADMIN.name())) {
             response.sendRedirect("/admin");
             return;
         }
@@ -31,7 +31,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         if (savedReq != null) {
             response.sendRedirect(savedReq.getRedirectUrl());
             return;
-        }else if (roles.contains("ROLE_" + Role.USER.name())){
+        } else if (roles.contains("ROLE_" + Role.USER.name())) {
             response.sendRedirect("/profile");
             return;
         }

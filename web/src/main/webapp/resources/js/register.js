@@ -1,11 +1,12 @@
 $(document).ready(function () {
 
-   $('#registration_form').submit(function (e) {
-       e.preventDefault();
-       saveNewUser();
-   })
+    $('#registration_form').submit(function (e) {
+        e.preventDefault();
+        saveNewUser();
+    })
 
 });
+
 function saveNewUser() {
     var valid = true;
     var firstName = $('#firstName').val();
@@ -15,29 +16,29 @@ function saveNewUser() {
     var password = $('#password').val();
     var confirmPassword = $('#confirmPassword').val();
 
-    if(firstName == null || firstName == ""){
+    if (firstName == null || firstName == "") {
         valid = false;
         $('#firstName').css("border", "2px solid red");
     }
-    if(lastName == null || lastName == ""){
+    if (lastName == null || lastName == "") {
         valid = false;
         $('#lastName').css("border", "2px solid red");
     }
-    if(position == null || position == ""){
+    if (position == null || position == "") {
         valid = false;
         $('#position').css("border", "2px solid red");
     }
-    if(checkPhoneNumber(phoneNumber)){
+    if (checkPhoneNumber(phoneNumber)) {
         valid = false;
         $('#phoneNumber').css("border", "2px solid red");
     }
-    if(password != confirmPassword) {
+    if (password != confirmPassword) {
         valid = false;
         $('#password').css("border", "2px solid red");
         $('#confirmPassword').css("border", "2px solid red");
     }
 
-    if(valid){
+    if (valid) {
         var json = {
             "firstName": firstName,
             "lastName": lastName,
@@ -47,14 +48,14 @@ function saveNewUser() {
             "password": password
         };
 
-        $.ajax("/rest/registration/save",{
+        $.ajax("/rest/registration/save", {
             contentType: "application/json",
             data: JSON.stringify(json),
             type: "post",
-            success: function(){
+            success: function () {
                 window.location.pathname = "/login";
             },
-            error: function(data){
+            error: function (data) {
                 alert("Ошибка! Проверьте правильность заполнения полей.");
                 console.log("Can't registration " + data);
             }
@@ -65,19 +66,19 @@ function saveNewUser() {
 
 function checkPhoneNumber(phoneNumber) {
     var valid = false;
-    if(phoneNumber.length >= 7 && phoneNumber.length <= 12){
-        $.ajax("/rest/registration/changePhoneNumber",{
+    if (phoneNumber.length >= 7 && phoneNumber.length <= 12) {
+        $.ajax("/rest/registration/changePhoneNumber", {
             contentType: "application/json",
             data: phoneNumber,
             type: "post",
             async: false,
-            success: function(data){
-                if(data != true) {
+            success: function (data) {
+                if (data != true) {
                     valid = true;
                 }
             }
         });
-    }else{
+    } else {
         valid = true;
     }
     return valid;

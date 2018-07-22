@@ -11,13 +11,13 @@ public class ImportToExcelService {
 
     private EquipmentData equipmentData;
 
-    public ImportToExcelService(EquipmentData equipmentData){
+    public ImportToExcelService(EquipmentData equipmentData) {
         this.equipmentData = equipmentData;
     }
 
-    public void processEquipmentSheet(Workbook workbook){
+    public void processEquipmentSheet(Workbook workbook) {
         Sheet sheet = workbook.getSheet(SHEET_EQUIPMENT_NAME);
-        if(sheet != null){
+        if (sheet != null) {
             ImportEquipmentToExcelTool importEquipmentToExcelTool = new ImportEquipmentToExcelTool(equipmentData);
             importEquipmentToExcelTool.readEquipmentSheet(sheet);
         }

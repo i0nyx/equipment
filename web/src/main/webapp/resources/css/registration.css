@@ -1,17 +1,19 @@
-
 /*-- main --*/
 .main-w3layouts {
-    padding:1em 0 1em;
+    padding: 1em 0 1em;
 }
+
 .main-agileinfo {
     width: 35%;
     margin: 1em auto;
     background: rgba(0, 0, 0, 0.12);
     background-size: cover;
 }
+
 .agileits-top {
-    padding:1em;
+    padding: 1em;
 }
+
 input[type="text"], input[type="tel"], input[type="password"] {
     font-size: 0.9em;
     color: #fff;
@@ -37,6 +39,7 @@ input[type="text"], input[type="tel"], input[type="password"] {
     outline: none;
     background-position: 0 0;
 }
+
 .text:focus::-webkit-input-placeholder, .text:valid::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.7);
     font-size: .9em;
@@ -47,21 +50,26 @@ input[type="text"], input[type="tel"], input[type="password"] {
     transform: translateY(-30px);
     visibility: visible !important;
 }
+
 ::-webkit-input-placeholder {
     color: #fff;
     font-weight: 100;
 }
+
 :-moz-placeholder { /* Firefox 18- */
     color: #fff;
 }
-::-moz-placeholder {  /* Firefox 19+ */
+
+::-moz-placeholder { /* Firefox 19+ */
     color: #fff;
 }
+
 :-ms-input-placeholder {
     color: #fff;
 }
+
 #register {
-    font-size:.9em;
+    font-size: .9em;
     color: #fff;
     background: #1c8700;
     outline: none;
@@ -73,9 +81,10 @@ input[type="text"], input[type="tel"], input[type="password"] {
     margin: 2em 0;
     letter-spacing: 4px;
 }
+
 #register:hover {
     -moz-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.58);
-    box-shadow:0px -1px 3px 0 rgba(0, 0, 0, 0.58);
+    box-shadow: 0px -1px 3px 0 rgba(0, 0, 0, 0.58);
     -webkit-transition: .5s all;
     -moz-transition: .5s all;
     -o-transition: .5s all;
@@ -83,6 +92,7 @@ input[type="text"], input[type="tel"], input[type="password"] {
     transition: .5s all;
     background: transparent;
 }
+
 .agileits-top p {
     font-size: 1em;
     color: #fff;
@@ -90,6 +100,7 @@ input[type="text"], input[type="tel"], input[type="password"] {
     letter-spacing: 1px;
     font-weight: 300;
 }
+
 .agileits-top p a {
     color: #fff;
     -webkit-transition: .5s all;
@@ -97,9 +108,11 @@ input[type="text"], input[type="tel"], input[type="password"] {
     transition: .5s all;
     font-weight: 400;
 }
+
 .agileits-top p a:hover {
     color: #ff6262;
 }
+
 /*-- //main --*/
 /*-- checkbox --*/
 .wthree-text label {
@@ -109,12 +122,14 @@ input[type="text"], input[type="tel"], input[type="password"] {
     cursor: pointer;
     position: relative;
 }
+
 input.checkbox {
-    background:#b34677;
+    background: #b34677;
     cursor: pointer;
     width: 1.2em;
     height: 1.2em;
 }
+
 input.checkbox:before {
     content: "";
     position: absolute;
@@ -123,6 +138,7 @@ input.checkbox:before {
     background: inherit;
     cursor: pointer;
 }
+
 input.checkbox:after {
     content: "";
     position: absolute;
@@ -137,6 +153,7 @@ input.checkbox:after {
     -o-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
 }
+
 input.checkbox:checked:after {
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
@@ -148,6 +165,7 @@ input.checkbox:checked:after {
     border-top-color: transparent;
     border-right-color: transparent;
 }
+
 .anim input.checkbox:checked:after {
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
@@ -160,6 +178,7 @@ input.checkbox:checked:after {
     animation: .4s rippling .4s ease;
     animation-fill-mode: forwards;
 }
+
 /*@keyframes rippling {
     50% {
         border-left-color: #fff;
@@ -538,12 +557,13 @@ input.checkbox:checked:after {
     }
 }*/
 /*-- //responsive-design --*/
-#regHead{
-    color:#ffffff;
-    font-size: 26px;
-    padding-left:30%;
-}
-label{
+#regHead {
     color: #ffffff;
-    font-size:14px;
+    font-size: 26px;
+    padding-left: 30%;
+}
+
+label {
+    color: #ffffff;
+    font-size: 14px;
 }

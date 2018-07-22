@@ -1,83 +1,77 @@
 package by.onyx.web.controller.nav;
 
 import by.onyx.common.data.*;
-import by.onyx.common.pojo.Support;
+import by.onyx.common.pojo.SupportType;
 import by.onyx.common.pojo.profile.User;
 import by.onyx.common.util.UserUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 
 @Controller
 @RequestMapping(value = "/")
+@AllArgsConstructor
 public class NavigationController {
 
-    @Autowired
     private CartridgeRepairData cartridgeRepairData;
-    @Autowired
     private SupportData supportData;
-    @Autowired
     private ComputerRepairData computerRepairData;
-    @Autowired
     private PrinterRepairData printerRepairData;
-    @Autowired
     private OrderData orderData;
-    @Autowired
     private UserData userData;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String home(ModelMap modelMap){
+    @GetMapping
+    public String home(ModelMap modelMap) {
         User user = UserUtils.getActiveUserFromRepository(userData);
-        if(user != null){
+        if (user != null) {
             user.setPassword(null);
             modelMap.put("user", user);
         }
         return "index";
     }
 
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String profilePage(ModelMap modelMap){
+    @GetMapping(value = "/profile")
+    public String profilePage(ModelMap modelMap) {
         User user = UserUtils.getActiveUserFromRepository(userData);
-        if(user != null){
+        if (user != null) {
             user.setPassword(null);
             modelMap.put("user", user);
             modelMap.put("userSupports", supportData.getAllByUser(user));
             return "profile/profile";
-        }else {
+        } else {
             return "login/login";
         }
     }
 
-    @RequestMapping(value = "/cartridges_and_printers", method = RequestMethod.GET)
-    public String printerPage(ModelMap modelMap){
+    @GetMapping(value = "/cartridges_and_printers")
+    public String printerPage(ModelMap modelMap) {
         User user = UserUtils.getActiveUserFromRepository(userData);
-        if(user != null){
+        if (user != null) {
             user.setPassword(null);
             modelMap.put("user", user);
         }
         modelMap.put("cartridges", cartridgeRepairData.get());
         modelMap.put("printers", printerRepairData.getAll());
-        modelMap.put("supports", supportData.getAllBySupportType(Support.SupportType.PRINTER));
+        modelMap.put("supports", supportData.getAllBySupportType(SupportType.PRINTER));
         return "cartridges_and_printers";
     }
 
-    @RequestMapping(value = "/computers", method = RequestMethod.GET)
-    public String computersPage(ModelMap modelMap){
+    @GetMapping(value = "/computers")
+    public String computersPage(ModelMap modelMap) {
         User user = UserUtils.getActiveUserFromRepository(userData);
-        if(user != null){
+        if (user != null) {
             user.setPassword(null);
             modelMap.put("user", user);
         }
         modelMap.put("computers", computerRepairData.getAll());
-        modelMap.put("supports", supportData.getAllBySupportType(Support.SupportType.COMPUTER));
+        modelMap.put("supports", supportData.getAllBySupportType(SupportType.COMPUTER));
         return "computers";
     }
 
-    @RequestMapping(value = "/order", method = RequestMethod.GET)
-    public String orderPage(ModelMap modelMap){
+    @GetMapping(value = "/order")
+    public String orderPage(ModelMap modelMap) {
         modelMap.put("orders", orderData.allByIsStateFalse());
         modelMap.put("allOrders", orderData.getAllOrders());
         return "order";

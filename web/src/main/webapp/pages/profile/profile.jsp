@@ -1,6 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
@@ -31,25 +31,37 @@
                         </c:choose>
                     </div>
                     <div>${user.position}</div>
-                    <br />
+                    <br/>
                 </div>
                 <div style="width:250px;">
-                    <p><button type="button" class="btn btn-success btn-sm" id="change-foto-link">Изменить фото</button></p>
-                    <p><button type="button" class="btn btn-success btn-sm" id="change-profile-link">Изменить данные</button></p>
-                    <p><button type="button" class="btn btn-success btn-sm" id="change-password-link">Изменить пароль</button></p>
-                    <p><button type="button" class="btn btn-danger btn-md" id="logout-link">ВЫЙТИ</button></p>
+                    <p>
+                        <button type="button" class="btn btn-success btn-sm" id="change-foto-link">Изменить фото
+                        </button>
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-success btn-sm" id="change-profile-link">Изменить данные
+                        </button>
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-success btn-sm" id="change-password-link">Изменить пароль
+                        </button>
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-danger btn-md" id="logout-link">ВЫЙТИ</button>
+                    </p>
                 </div>
             </div>
             <div class="col-sm-10">
                 <div id="profile_view" style="margin-left: 100px;">
                     <h3>Данные профиля</h3>
                     <div style="font-size:18px; margin-left: 40px;">
-                        Имя: ${user.firstName}<br />
-                        Фамилия: ${user.lastName}<br />
-                        Должность: ${user.position}<br />
-                        Номер кабинета: ${user.cabinetNumber}<br />
-                        Телефон (логин): ${user.phoneNumber}<br />
-                        Дата регистрации: <fmt:formatDate value="${user.dateRegistration}" pattern="dd-MM-yyyy H:m" /> <br />
+                        Имя: ${user.firstName}<br/>
+                        Фамилия: ${user.lastName}<br/>
+                        Должность: ${user.position}<br/>
+                        Номер кабинета: ${user.cabinetNumber}<br/>
+                        Телефон (логин): ${user.phoneNumber}<br/>
+                        Дата регистрации: <fmt:formatDate value="${user.dateRegistration}" pattern="dd-MM-yyyy H:m"/>
+                        <br/>
                     </div>
                 </div>
                 <div id="support_view" style="display:none;margin-left: 100px;">
@@ -68,7 +80,7 @@
                         <c:forEach items="${userSupports}" var="support">
                             <tr>
                                 <td>${support.id}</td>
-                                <td><fmt:formatDate value="${support.date}" pattern = "dd-MM-yyyy HH:mm" /></td>
+                                <td><fmt:formatDate value="${support.date}" pattern="dd-MM-yyyy HH:mm"/></td>
                                 <td><c:choose>
                                     <c:when test="${support.urgently == 'true'}">
                                         <span style="color:red">срочно</span>
@@ -100,42 +112,47 @@
                 <div id="change_profile_view" style="display: none; margin-left: 100px;">
                     <h3>Данные профиля</h3>
                     <div style="font-size:18px; margin-left: 40px;">
-                        <div id="changeError" style="display: none; color:red">Ошибка! Проверьте, что бы все поля были заполнены.</div>
+                        <div id="changeError" style="display: none; color:red">Ошибка! Проверьте, что бы все поля были
+                            заполнены.
+                        </div>
                         <form id="changeProfileForm">
-                            <input type="hidden" class="userId" value="${user.id}" />
+                            <input type="hidden" class="userId" value="${user.id}"/>
                             <div class="form-group">
                                 <label for="firstName">Имя:</label>
                                 <input type="text" class="form-control" id="firstName" value="${user.firstName}">
-                                <%--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>--%>
+                                    <%--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>--%>
                             </div>
                             <div class="form-group">
                                 <label for="lastName">Фамилия:</label>
-                                <input type="text" class="form-control" id="lastName" value="${user.lastName}" >
+                                <input type="text" class="form-control" id="lastName" value="${user.lastName}">
                             </div>
                             <div class="form-group">
                                 <label for="position">Должность:</label>
-                                <input type="text" class="form-control" id="position" value="${user.position}" >
+                                <input type="text" class="form-control" id="position" value="${user.position}">
                             </div>
                             <div class="form-group">
                                 <label for="cabinetNumber">Номер кабинета:</label>
-                                <input type="text" class="form-control" id="cabinetNumber" value="${user.cabinetNumber}" >
+                                <input type="text" class="form-control" id="cabinetNumber"
+                                       value="${user.cabinetNumber}">
                             </div>
                             <div class="form-group">
                                 <label for="phoneNumber">Телефон (логин):</label>
-                                <input type="text" class="form-control" id="phoneNumber" value="${user.phoneNumber}" >
+                                <input type="text" class="form-control" id="phoneNumber" value="${user.phoneNumber}">
                             </div>
-                            <input type="submit" class="btn btn-success" value="сохранить" />
+                            <input type="submit" class="btn btn-success" value="сохранить"/>
                         </form>
                     </div>
                 </div>
                 <div id="change_password_view" style="display: none; margin-left: 100px">
                     <h3>Смена пароля</h3>
                     <div style="font-size:18px; margin-left: 40px;">
-                        <div id="changePasswordError" style="display: none; color:red">Ошибка! Заполните форму еще раз и будьте внимательны.</div>
+                        <div id="changePasswordError" style="display: none; color:red">Ошибка! Заполните форму еще раз и
+                            будьте внимательны.
+                        </div>
                         <form id="changePasswordForm">
                             <div class="form-group">
                                 <label for="password">Текущий пароль:</label>
-                                <input type="password" class="form-control" id="password" >
+                                <input type="password" class="form-control" id="password">
                                 <small class="form-text text-muted" id="passError">Введите текущий пароль.</small>
                             </div>
                             <div class="form-group">
@@ -146,10 +163,12 @@
                             <div class="form-group">
                                 <label for="newPassAgain">Повторите новый пароль:</label>
                                 <input type="password" class="form-control" id="newPassAgain">
-                                <small class="form-text text-muted" id="newPassError" style="display: none; color:red;">Пароли не совпадают.</small>
+                                <small class="form-text text-muted" id="newPassError" style="display: none; color:red;">
+                                    Пароли не совпадают.
+                                </small>
                             </div>
-                            <input type="hidden" class="uerId" value="${user.id}" />
-                            <input type="submit" class="btn btn-success" value="сохранить" />
+                            <input type="hidden" class="uerId" value="${user.id}"/>
+                            <input type="submit" class="btn btn-success" value="сохранить"/>
                         </form>
                     </div>
 
@@ -160,8 +179,11 @@
                         <form enctype="multipart/form-data" id="changeFotoForm" method="post">
                             <div class="form-group">
                                 <label for="file">Выберите фото:</label>
-                                <input type="file" name="file" class="form-control-file" multiple id="file" accept="image/jpeg, image/png">
-                                <small class="form-text text-muted">Размер фото не более 1мб, формат: .jpg, .jpeg, .png</small>
+                                <input type="file" name="file" class="form-control-file" multiple id="file"
+                                       accept="image/jpeg, image/png">
+                                <small class="form-text text-muted">Размер фото не более 1мб, формат: .jpg, .jpeg,
+                                    .png
+                                </small>
                             </div>
                             <button type="submit" class="btn btn-success" value="${user.id}">Сохранить</button>
                         </form>

@@ -1,4 +1,4 @@
-<%@tag description="Simple Wrapper Tag" pageEncoding="UTF-8"%>
+<%@tag description="Simple Wrapper Tag" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -40,9 +40,9 @@
 </head>
 <body>
 
-    <jsp:doBody/>
+<jsp:doBody/>
 
-    <jsp:include page="/include/container/scripts.jsp"></jsp:include>
+<jsp:include page="/include/container/scripts.jsp"></jsp:include>
 
 </body>
 </html>
