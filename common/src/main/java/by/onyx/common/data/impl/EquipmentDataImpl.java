@@ -10,26 +10,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
-@AllArgsConstructor
 @Transactional
+@AllArgsConstructor
 public class EquipmentDataImpl implements EquipmentData {
-
-    private EquipmentRepository equipmentRepository;
+    private final EquipmentRepository equipmentRepository;
 
     @Override
-    public Equipment save(Equipment equipment) {
-        Equipment result = null;
-        if (equipment != null) {
-            try {
-                result = equipmentRepository.saveAndFlush(equipment);
-            } catch (Exception e) {
-                log.error("can't save equipment " + e);
-            }
-        }
-        return result;
+    public Equipment save(final Equipment data) {
+        Optional.ofNullable(data).orElseThrow(NullPointerException::new);
+        return equipmentRepository.saveAndFlush(data);
     }
 
     @Override
@@ -38,38 +31,26 @@ public class EquipmentDataImpl implements EquipmentData {
     }
 
     @Override
-    public Equipment getByCode(String code) {
-        Equipment result = null;
-        try {
-            result = equipmentRepository.findByCode(code);
-            Hibernate.initialize(result.getReceivedRepair());
-        } catch (Exception e) {
-            log.error("no find by code " + e);
-        }
+    public Equipment getByCode(final String code) {
+        Equipment result = equipmentRepository.findByCode(code);
+        Optional.ofNullable(result).ifPresent(equipment -> Hibernate.initialize(equipment.getReceivedRepair()));
         return result;
     }
 
     @Override
-    public Equipment getById(int id) {
-        Equipment result = null;
-        try {
-            result = equipmentRepository.findOne(id);
-            Hibernate.initialize(result.getReceivedRepair());
-        } catch (Exception e) {
-            log.info("no equipment by id - " + id + " " + e);
-        }
+    public Equipment getById(final int id) {
+        Equipment result = equipmentRepository.findOne(id);
+        Optional.ofNullable(result).ifPresent(equipment -> Hibernate.initialize(equipment.getReceivedRepair()));
         return result;
     }
 
     @Override
-    public void deleteById(int id) {
-        if (id != 0) {
-            try {
-                equipmentRepository.delete(id);
-                log.info("delete equipment by id " + id);
-            } catch (Exception e) {
-                log.error("can't delete equipment by id " + id + " " + e);
-            }
+    public void deleteById(final int id) {
+        try {
+            equipmentRepository.delete(id);
+            log.info("delete equipment by id {}", id);
+        } catch (Exception e) {
+            log.error("can't delete equipment by id {}, exception: {}", id, e);
         }
     }
 }

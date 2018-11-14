@@ -3,6 +3,7 @@ package by.onyx.web.controller.admin.nav;
 import by.onyx.common.data.*;
 import by.onyx.common.pojo.EquipmentType;
 import by.onyx.common.pojo.ReceivedRepair;
+import by.onyx.common.pojo.TypeWork;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,7 +22,6 @@ import static by.onyx.web.constants.ConstantUrlAdminMapping.CONST_URL_ADMIN_VIEW
 @RequestMapping(value = CONST_URL_ADMIN)
 @AllArgsConstructor
 public class AdminNavigationController {
-
     private CartridgeRepairData cartridgeRepairData;
     private ReceivedRepairData receivedRepairData;
     private EquipmentData equipmentData;
@@ -59,7 +59,7 @@ public class AdminNavigationController {
 
     @GetMapping(value = "/repair-cartridge")
     public String repairCartridgeView(ModelMap modelMap) {
-        modelMap.put("enumType", cartridgeRepairData.getTypeWork());
+        modelMap.put("enumType", TypeWork.typeWorkHashMap);
         modelMap.put("receivedRepairs", receivedRepairData.getByEquipmentTypeAndState(EquipmentType.CARTRIDGE, false));
         modelMap.put("cartridges", cartridgeRepairData.get());
         return CONST_URL_ADMIN_VIEW + "adminCartridgeRepairView";
@@ -80,14 +80,12 @@ public class AdminNavigationController {
         list.addAll(receivedRepairData.getByEquipmentTypeAndState(EquipmentType.ACCESSORIES, false));
         modelMap.put("receivedRepairs", list);
         modelMap.put("computers", computerRepairData.getAll());
-
         return CONST_URL_ADMIN_VIEW + "adminComputerRepairView";
     }
 
     @GetMapping(value = "/printer-repair")
     public String repairPrinterView(ModelMap modelMap) {
-        List<ReceivedRepair> list = new ArrayList<>();
-        list.addAll(receivedRepairData.getByEquipmentTypeAndState(EquipmentType.PRINTER, false));
+        List<ReceivedRepair> list = new ArrayList<>(receivedRepairData.getByEquipmentTypeAndState(EquipmentType.PRINTER, false));
         modelMap.put("receivedRepairs", list);
         modelMap.put("printers", printerRepairData.getAll());
         return CONST_URL_ADMIN_VIEW + "/adminPrinterRepairView";

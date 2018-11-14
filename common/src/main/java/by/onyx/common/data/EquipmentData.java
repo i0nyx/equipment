@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface EquipmentData {
 
-    Equipment save(Equipment equipment);
+    Equipment save(final Equipment equipment);
 
     List<Equipment> getAll();
 
-    Equipment getByCode(String code);
+    Equipment getByCode(final String code);
 
-    Equipment getById(int id);
+    Equipment getById(final int id);
 
-    void deleteById(int id);
+    void deleteById(final int id);
 }

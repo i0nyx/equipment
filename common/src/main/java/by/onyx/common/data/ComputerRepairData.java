@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ComputerRepairData {
 
-    ComputerRepair save(ComputerRepair data);
+    ComputerRepair save(final ComputerRepair data);
 
     List<ComputerRepair> getAll();
 }
