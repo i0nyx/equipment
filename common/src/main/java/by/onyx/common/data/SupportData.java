@@ -8,16 +8,10 @@ import by.onyx.common.pojo.profile.User;
 import java.util.List;
 
 public interface SupportData {
-
-    Support save(Support support);
-
+    Support save(final Support support);
     List<Support> getAll();
-
-    Support getById(int id);
-
-    List<Support> getAllBySupportType(SupportType type);
-
-    List<Support> getAllByStatus(SupportStatus status);
-
-    List<Support> getAllByUser(User user);
+    Support getById(final int id);
+    List<Support> getAllBySupportType(final SupportType type);
+    List<Support> getAllByStatus(final SupportStatus status);
+    List<Support> getAllByUser(final User user);
 }
