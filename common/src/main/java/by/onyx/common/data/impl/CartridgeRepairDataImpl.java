@@ -25,7 +25,7 @@ public class CartridgeRepairDataImpl implements CartridgeRepairData {
 
     @Override
     public CartridgeRepair save(final CartridgeRepair data) {
-        Optional.ofNullable(data).orElseThrow(NullPointerException::new);
+        Optional.ofNullable(data).orElseThrow(() -> new IllegalArgumentException("Error: cartridgeRepair should not be null!"));
         return repairRepository.saveAndFlush(data);
     }
 }

@@ -21,7 +21,7 @@ public class EquipmentDataImpl implements EquipmentData {
 
     @Override
     public Equipment save(final Equipment data) {
-        Optional.ofNullable(data).orElseThrow(NullPointerException::new);
+        Optional.ofNullable(data).orElseThrow(() -> new IllegalArgumentException("Error: equipment should not be null!"));
         return equipmentRepository.saveAndFlush(data);
     }
 
