@@ -9,17 +9,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-@AllArgsConstructor
 @Transactional
+@AllArgsConstructor
 public class ReceivedRepairDataImpl implements ReceivedRepairData {
-
-    private ReceivedRepairRepository receivedRepairRepository;
+    private final ReceivedRepairRepository receivedRepairRepository;
 
     @Override
     public List<ReceivedRepair> getAll() {
@@ -27,51 +26,32 @@ public class ReceivedRepairDataImpl implements ReceivedRepairData {
     }
 
     @Override
-    public ReceivedRepair getById(int id) {
-        ReceivedRepair result = null;
-        try {
-            result = receivedRepairRepository.findOne(id);
-        } catch (Exception e) {
-            log.error("not found by id " + e);
-        }
-        return result;
+    public ReceivedRepair getById(final int id) {
+        return receivedRepairRepository.findOne(id);
     }
 
     @Override
-    public List<ReceivedRepair> getByEquipmentTypeAndState(EquipmentType type, boolean state) {
-        List<ReceivedRepair> result = new ArrayList<>();
-        List<ReceivedRepair> all = receivedRepairRepository.findAll();
-        if (all != null) {
-            for (ReceivedRepair rr : all) {
-                if (rr.getEquipment().getType().equals(type) && rr.isState() == state) {
-                    result.add(rr);
-                }
-            }
-        }
-        return result;
+    public List<ReceivedRepair> getByEquipmentTypeAndState(final EquipmentType type, final boolean state) {
+        return receivedRepairRepository.findAll().stream()
+                .filter(receivedRepair -> receivedRepair.getEquipment().getType().equals(type))
+                .filter(receivedRepair -> receivedRepair.isState() == state)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<ReceivedRepair> getByState(boolean status) {
+    public List<ReceivedRepair> getByState(final boolean status) {
+        Optional.ofNullable(status).orElseThrow(() -> new IllegalArgumentException("Error: status should not be null!"));
         return receivedRepairRepository.findByState(status);
     }
 
     @Override
-    public ReceivedRepair save(ReceivedRepair receivedRepair) {
-        ReceivedRepair received = null;
-        if (receivedRepair != null) {
-            try {
-                received = receivedRepairRepository.saveAndFlush(receivedRepair);
-                log.debug("Received Repair saved " + receivedRepair);
-            } catch (Exception e) {
-                log.error("Received Repair can't save " + e);
-            }
-        }
-        return received;
+    public ReceivedRepair save(final ReceivedRepair receivedRepair) {
+        Optional.ofNullable(receivedRepair).orElseThrow(() -> new IllegalArgumentException("Error: receivedRepair should not be null!"));
+        return receivedRepairRepository.saveAndFlush(receivedRepair);
     }
 
     @Override
     public void deleteByNumber(String number) {
-
+        //TODO
     }
 }

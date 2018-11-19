@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
 @AllArgsConstructor
 @Transactional
 public class PrinterRepairDataImpl implements PrinterRepairData {
-
     private PrinterRepairRepository printerRepairRepository;
 
     @Override
@@ -24,16 +24,8 @@ public class PrinterRepairDataImpl implements PrinterRepairData {
     }
 
     @Override
-    public PrinterRepair save(PrinterRepair data) {
-        PrinterRepair result = null;
-        if (data != null) {
-            try {
-                result = printerRepairRepository.saveAndFlush(data);
-                log.info("save printerRepair object");
-            } catch (Exception e) {
-                log.error("can't save printerRepair object " + e);
-            }
-        }
-        return result;
+    public PrinterRepair save(final PrinterRepair data) {
+        Optional.ofNullable(data).orElseThrow(() -> new IllegalArgumentException("Error: printerRepair should not be null!"));
+        return printerRepairRepository.saveAndFlush(data);
     }
 }

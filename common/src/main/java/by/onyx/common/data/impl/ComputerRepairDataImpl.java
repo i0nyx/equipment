@@ -9,29 +9,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
-@AllArgsConstructor
 @Transactional
+@AllArgsConstructor
 public class ComputerRepairDataImpl implements ComputerRepairData {
-
-    private ComputerRepairRepository computerRepository;
+    private final ComputerRepairRepository computerRepository;
 
     @Override
-    public ComputerRepair save(ComputerRepair data) {
-        ComputerRepair result = null;
-        if (data != null) {
-            try {
-                result = computerRepository.saveAndFlush(data);
-                log.info("saved computer repair is true");
-            } catch (Exception e) {
-                log.error("can't save computer repair" + e);
-            }
-        } else {
-            log.info("object computer repair is null");
-        }
-        return result;
+    public ComputerRepair save(final ComputerRepair data) {
+        Optional.ofNullable(data).orElseThrow(() -> new IllegalArgumentException("Error: computerRepair should not be null!"));
+        return computerRepository.saveAndFlush(data);
     }
 
     @Override
